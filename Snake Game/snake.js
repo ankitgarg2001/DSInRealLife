@@ -60,9 +60,15 @@ function init(){
                 Y= headY-1;
             }
             this.cells.unshift({x:X,y:Y});
+            for(var i=1;i<this.cells.length;i++){
+                if(this.cells[0].x==this.cells[i].x && this.cells[0].y==this.cells[i].y){
+                    console.log("Bit Himself");
+                    game_over = true;
+                }
+            }
             var last_x = (W/cs);
             var last_y = (H/cs);
-            if(this.cells[0].x<0 || this.cells[0].y<0 || this.cells[0].x>last_x || this.cells[0].y > last_y){
+            if(game_over==false && (this.cells[0].x<0 || this.cells[0].y<0 || this.cells[0].x>last_x || this.cells[0].y > last_y)){
                 game_over = true;
             }
         }   
