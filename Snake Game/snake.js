@@ -10,7 +10,9 @@ function init(){
     food_img.src = "Assets/apple.png";
     tropy = new Image();
     tropy.src = "Assets/trophy.png";
-
+    gameOver = new Image();
+    gameOver.src = "Assets/gameOver.png"; 
+    restart = "Press R to Restart";
     snake  = {
         init_len:5,
         color:"blue",
@@ -79,7 +81,11 @@ function init(){
         else if(event.key=="ArrowDown"){
             snake.direction = "down";
         }
-        console.log(snake.direction);
+        else if(game_over==true && event.key=="r"){
+            init();
+            f = setInterval(gameLoop,100);
+        }
+        console.log(event.key);
     }
     document.addEventListener('keydown',KeyPressed);
 }
@@ -115,7 +121,10 @@ function update(){
 function gameLoop(){
     if(game_over==true){
         clearInterval(f);
-        alert("Game Over!!!!!!");
+        pen.drawImage(gameOver, 0,0,1000,1000);
+        pen.fillStyle = "red";
+        pen.font = "50px Roboto";
+        pen.fillText(restart,330,800);
         return;
     }
     draw();
